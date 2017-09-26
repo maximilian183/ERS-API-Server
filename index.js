@@ -25,10 +25,12 @@ app.set('port', process.env.PORT || 5000);
 app.get('/api/', (req, res) => {
   if (req.query.code){
     var code = req.query.code;
-    firebase.database().ref(`/test_dispatches/${code}`).once('value')
+    firebase.database().ref(`/ersDispatches/${code}`).once('value')
     .then(function(snapshot){
-      console.log(snapshot.val());
-      res.send(JSON.stringify(snapshot.val()));
+      if(snapshot) {
+        console.log(snapshot.val());
+        res.send(JSON.stringify(snapshot.val()));
+      }
     })
     .catch(function(err){
       res.send(err);
