@@ -10,6 +10,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "4.15.2",
     "firebase": "^4.4.0",
     "request": "^2.82.0"
