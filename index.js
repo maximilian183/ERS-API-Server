@@ -2,6 +2,9 @@ var express = require('express');
 var app = express();
 var request = require('request');
 var firebase = require('firebase');
+var cors = require('cors')
+
+app.use(cors())
 require('firebase/database');
 
 var firebase_cred = {
