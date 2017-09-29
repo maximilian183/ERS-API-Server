@@ -25,6 +25,10 @@ firebase.auth().signInWithEmailAndPassword('emergency.response.solutions1@gmail.
 
 app.set('port', process.env.PORT || 5000);
 
+app.listen(app.get('port'), function() {
+  console.log('Running on port', app.get('port'));
+});
+
 app.get('/api/', (req, res) => {
   if (req.query.code){
     var code = req.query.code;
@@ -41,8 +45,4 @@ app.get('/api/', (req, res) => {
   } else {
     res.send('Please include key');
   }
-});
-
-app.listen(app.get('port'), function() {
-  console.log('Running on port', app.get('port'));
 });
