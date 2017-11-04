@@ -13,6 +13,7 @@
     "cors": "^2.8.4",
     "express": "4.15.2",
     "firebase": "^4.4.0",
+    "firebase-admin": "^5.4.3",
     "forever": "^0.15.3",
     "request": "^2.82.0"
   },

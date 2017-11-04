@@ -1,32 +1,18 @@
 var express = require('express');
 var app = express();
 var request = require('request');
-var firebase = require('firebase');
+var admin = require('firebase-admin');
 var cors = require('cors')
 
 app.use(cors())
-require('firebase/database');
+
+var serviceAccount = require("./key/ers-dispatch-firebase-adminsdk-08k8q-9744cb602f.json");
 
 var firebase_cred = {
-    apiKey: "AIzaSyAyscBTLhOFfz3rWvxCcg9Woyj5zJAKy9U",
-    authDomain: "ers-dispatch.firebaseapp.com",
+    credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://ers-dispatch.firebaseio.com",
-    projectId: "ers-dispatch",
-    storageBucket: "ers-dispatch.appspot.com",
-    messagingSenderId: "412226656783"
 }
-firebase.initializeApp(firebase_cred);
-
-firebase.auth().signInWithEmailAndPassword('emergency.response.solutions1@gmail.com', 'password')
-.then(function(){
-  firebase.auth().onAuthStateChanged(function(user) {
-    console.log('Logged in as: ', user.email);
-  });
-})
-.catch(function(error) {
-  console.log(error);
-});
-
+admin.initializeApp(firebase_cred);
 
 app.set('port', process.env.PORT || 5000);
 
@@ -37,7 +23,7 @@ app.listen(app.get('port'), function() {
 app.get('/api/', (req, res) => {
   if (req.query.code){
     var code = req.query.code;
-    firebase.database().ref(`/ersDispatches/${code}`).once('value')
+    admin.database().ref(`/ersDispatches/${code}`).once('value')
     .then(function(snapshot){
       if(snapshot) {
         console.log(snapshot.val());
