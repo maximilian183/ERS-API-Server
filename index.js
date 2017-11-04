@@ -6,7 +6,7 @@ var cors = require('cors')
 
 app.use(cors())
 
-var serviceAccount = require("./key/ers-dispatch-firebase-adminsdk-08k8q-9744cb602f.json");
+var serviceAccount = require("./key/ers-dispatch-firebase-adminsdk-08k8q-3c9e3d13f9.json");
 
 var firebase_cred = {
     credential: admin.credential.cert(serviceAccount),
